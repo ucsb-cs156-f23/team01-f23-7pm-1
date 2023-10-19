@@ -6,7 +6,7 @@ Lab instructions: <https://ucsb-cs156.github.io/f23/lab/team01.html>
 |   Name    |  GitHub Id    |  Service                    | Controller                |
 |-----------|---------------|-----------------------------|---------------------------| 
 |  Daniel   | daniel-li2021 | `JokeQueryService`          | `JokeController`          |   
-|  Karan    | magaswarankk  | `LocationQueryService`      | `LocationController`      |   
+|  Karan    | mageswarankk  | `LocationQueryService`      | `LocationController`      |   
 |  Madhav   | madhav-ucsb   | `PublicHolidayQueryService` | `PublicHolidayController` |   
 |  Roberto  | rdoumeth      | `TidesQueryService`         | `TidesController`         |   
 |  Carson   | Irreflexive   | `UniversityQueryService`    | `UniversityController`    |
