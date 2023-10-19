@@ -4,7 +4,7 @@ This repo contains Github Actions workflows (under the `.github/workflows` direc
 can automatically publish documentation to a `gh-pages` branch, and publish documentation
 for the code on the Github Pages site associated with the repo.
 
-This file explains the necessary one-time setup steps to publish this documentation.
+This file explains the necessary one-time setup steps to publish  this documentation.
 
 After that, the scripts should keep it automatically up-to-date, but if you need to manually regenerate it, the information
 below explains how to do that.
