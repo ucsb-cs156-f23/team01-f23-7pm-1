@@ -13,12 +13,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lombok.extern.slf4j.Slf4j;
 
 
 @Slf4j
 @Service
 public class JokeQueryService {
+    ObjectMapper mapper = new ObjectMapper();
 
     private final RestTemplate restTemplate;
 
