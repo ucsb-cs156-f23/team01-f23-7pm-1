@@ -3,6 +3,8 @@ package edu.ucsb.cs156.spring.backenddemo.services;
 import java.util.List;
 import java.util.Map;
 
+
+
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -31,19 +33,19 @@ public class JokeQueryService {
 
     public static final String ENDPOINT = "https://v2.jokeapi.dev/joke/{category}?amount={numJokes}";
 
-    public String getJSON(String category, int numJokes) throws HttpClientErrorException {
+    public String getJSON(String category, String numJokes) throws HttpClientErrorException {
         log.info("category={}, numJokes={}", category, numJokes);
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
         headers.setContentType(MediaType.APPLICATION_JSON);
-
-        Map<String, Object> uriVariables = Map.of("category", category, "numJokes", numJokes);
+        // String numJoke = string(numJokes;
+        Map<String, String> uriVariables = Map.of("category", category, "numJokes", numJokes);
 
         HttpEntity<String> entity = new HttpEntity<>("body", headers);
 
         ResponseEntity<String> re = restTemplate.exchange(ENDPOINT, HttpMethod.GET, entity, String.class,
                 uriVariables);
         return re.getBody();
-
+        
     }
 }
