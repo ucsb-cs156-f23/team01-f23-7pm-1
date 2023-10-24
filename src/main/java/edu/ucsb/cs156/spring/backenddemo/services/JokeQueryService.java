@@ -34,7 +34,7 @@ public class JokeQueryService {
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
         headers.setContentType(MediaType.APPLICATION_JSON);
 
-        Map<String, String> uriVariables = Map.of("category", category);
+        Map<String, Object> uriVariables = Map.of("category", category, "numJokes", numJokes);
 
         HttpEntity<String> entity = new HttpEntity<>("body", headers);
 
