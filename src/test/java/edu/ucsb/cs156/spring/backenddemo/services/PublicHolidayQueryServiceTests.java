@@ -26,7 +26,7 @@ public class PublicHolidayQueryServiceTests {
 
 
         String countryCode = "US";
-        String year=  "2023";
+        String year=  "2022";
         String expectedURL = publicHolidayQueryService.ENDPOINT.replace("{year}", year)
                 .replace("{countryCode}", countryCode);
 
