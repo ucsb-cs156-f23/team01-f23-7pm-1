@@ -50,6 +50,4 @@ public class EarthquakeQueryService {
         return re.getBody();
     }
 
-   
-
 }
