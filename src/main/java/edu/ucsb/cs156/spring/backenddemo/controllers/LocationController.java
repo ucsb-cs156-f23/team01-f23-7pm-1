@@ -21,7 +21,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name = "Location info from nominatim.org")
 @Slf4j
 @RestController
-@RequestMapping("/api/locations/get")
+@RequestMapping("/api/locations/")
 public class LocationController {
     
     ObjectMapper mapper = new ObjectMapper();
