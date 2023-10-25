@@ -3,6 +3,8 @@
 import java.util.List;
 import java.util.Map;
 
+
+
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -18,32 +20,33 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 
 
-<span class="fc" id="L21">@Slf4j</span>
+<span class="fc" id="L23">@Slf4j</span>
 @Service
 public class JokeQueryService {
-<span class="fc" id="L24">    ObjectMapper mapper = new ObjectMapper();</span>
+<span class="fc" id="L26">    ObjectMapper mapper = new ObjectMapper();</span>
 
     private final RestTemplate restTemplate;
 
-<span class="fc" id="L28">    public JokeQueryService(RestTemplateBuilder restTemplateBuilder) {</span>
-<span class="fc" id="L29">        restTemplate = restTemplateBuilder.build();</span>
-<span class="fc" id="L30">    }</span>
+<span class="fc" id="L30">    public JokeQueryService(RestTemplateBuilder restTemplateBuilder) {</span>
+<span class="fc" id="L31">        restTemplate = restTemplateBuilder.build();</span>
+<span class="fc" id="L32">    }</span>
 
     public static final String ENDPOINT = &quot;https://v2.jokeapi.dev/joke/{category}?amount={numJokes}&quot;;
 
-    public String getJSON(String category, int numJokes) throws HttpClientErrorException {
-<span class="fc" id="L35">        log.info(&quot;category={}, numJokes={}&quot;, category, numJokes);</span>
-<span class="fc" id="L36">        HttpHeaders headers = new HttpHeaders();</span>
-<span class="fc" id="L37">        headers.setAccept(List.of(MediaType.APPLICATION_JSON));</span>
-<span class="fc" id="L38">        headers.setContentType(MediaType.APPLICATION_JSON);</span>
+    public String getJSON(String category, String numJokes) throws HttpClientErrorException {
+<span class="fc" id="L37">        log.info(&quot;category={}, numJokes={}&quot;, category, numJokes);</span>
+<span class="fc" id="L38">        HttpHeaders headers = new HttpHeaders();</span>
+<span class="fc" id="L39">        headers.setAccept(List.of(MediaType.APPLICATION_JSON));</span>
+<span class="fc" id="L40">        headers.setContentType(MediaType.APPLICATION_JSON);</span>
+        // String numJoke = string(numJokes;
+<span class="fc" id="L42">        Map&lt;String, String&gt; uriVariables = Map.of(&quot;category&quot;, category, &quot;numJokes&quot;, numJokes);</span>
 
-<span class="fc" id="L40">        Map&lt;String, Object&gt; uriVariables = Map.of(&quot;category&quot;, category, &quot;numJokes&quot;, numJokes);</span>
+<span class="fc" id="L44">        HttpEntity&lt;String&gt; entity = new HttpEntity&lt;&gt;(&quot;body&quot;, headers);</span>
 
-<span class="fc" id="L42">        HttpEntity&lt;String&gt; entity = new HttpEntity&lt;&gt;(&quot;body&quot;, headers);</span>
-
-<span class="fc" id="L44">        ResponseEntity&lt;String&gt; re = restTemplate.exchange(ENDPOINT, HttpMethod.GET, entity, String.class,</span>
+<span class="fc" id="L46">        ResponseEntity&lt;String&gt; re = restTemplate.exchange(ENDPOINT, HttpMethod.GET, entity, String.class,</span>
                 uriVariables);
-<span class="fc" id="L46">        return re.getBody();</span>
+<span class="fc" id="L48">        return re.getBody();</span>
+        
 
     }
 }
