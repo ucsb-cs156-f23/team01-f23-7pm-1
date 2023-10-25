@@ -30,10 +30,7 @@ public class JokeQueryServiceTests {
         String numJokes = "1";
 
         String expectedURL = JokeQueryService.ENDPOINT.replace("{category}",category).replace("{numJokes}", numJokes);
-        int numJokes = 1;
-
-        String expectedURL = JokeQueryService.ENDPOINT.replace("{category}",category).replace("{numJokes}", Integer.toString(numJokes));
-
+        
         String fakeJsonResult = "{ \"fake\" : \"result\" }";
 
         this.mockRestServiceServer.expect(requestTo(expectedURL))
