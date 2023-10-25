@@ -10,25 +10,23 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
+
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.header;
 
-@RestClientTest(PublicHolidayQueryService.class)
-public class PublicHolidayQueryServiceTests {
+@RestClientTest(LocationQueryService.class)
+public class LocationQueryServiceTests {
 
     @Autowired
     private MockRestServiceServer mockRestServiceServer;
 
     @Autowired
-    private PublicHolidayQueryService publicHolidayQueryService;
+    private LocationQueryService locationQueryService;
 
     @Test
     public void test_getJSON() {
 
-
-        String countryCode = "US";
-        String year=  "2022";
-        String expectedURL = publicHolidayQueryService.ENDPOINT.replace("{year}", year)
-                .replace("{countryCode}", countryCode);
+        String location = "Oxnard";
+        String expectedURL = LocationQueryService.ENDPOINT.replace("{location}", location);
 
         String fakeJsonResult = "{ \"fake\" : \"result\" }";
 
@@ -37,7 +35,7 @@ public class PublicHolidayQueryServiceTests {
                 .andExpect(header("Content-Type", MediaType.APPLICATION_JSON.toString()))
                 .andRespond(withSuccess(fakeJsonResult, MediaType.APPLICATION_JSON));
 
-        String actualResult =publicHolidayQueryService.getJSON(year, countryCode);
+        String actualResult = locationQueryService.getJSON(location);
         assertEquals(fakeJsonResult, actualResult);
     }
 }
