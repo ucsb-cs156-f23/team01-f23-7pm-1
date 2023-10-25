@@ -11,6 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.header;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 
 @RestClientTest(JokeQueryService.class)
 public class JokeQueryServiceTests {
@@ -24,10 +27,10 @@ public class JokeQueryServiceTests {
     @Test
     public void test_getJSON() {
         String category = "Programming";
-        int numJokes = 1;
+        String numJokes = "1";
 
-        String expectedURL = JokeQueryService.ENDPOINT.replace("{category}",category).replace("{numJokes}", Integer.toString(numJokes));
-
+        String expectedURL = JokeQueryService.ENDPOINT.replace("{category}",category).replace("{numJokes}", numJokes);
+        
         String fakeJsonResult = "{ \"fake\" : \"result\" }";
 
         this.mockRestServiceServer.expect(requestTo(expectedURL))
@@ -37,5 +40,7 @@ public class JokeQueryServiceTests {
 
         String actualResult = jokeQueryService.getJSON(category, numJokes);
         assertEquals(fakeJsonResult, actualResult);
+        log.info("fake={}, actual={}", fakeJsonResult, actualResult);
+
     }
 }
